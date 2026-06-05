@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                  // Modern JavaScript version
+    "module": "NodeNext",                // ES modules for ESM compatibility in Node.js
+    "strict": true,                      // Enable all strict type-checking options
+    "esModuleInterop": true,             // Allow importing CommonJS libraries with "import"
+    "skipLibCheck": true,                // Skip type checking of declaration files in node_modules
+    "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "6.0",
+    "moduleResolution": "nodenext",      // Node.js-style ESM module resolution
+    "noEmit": true,
+    "allowImportingTsExtensions": true,  // Allow explicit .ts imports
+    "resolveJsonModule": true,           // Allow importing JSON files
+    "types": ["node", "chai"],           // Include Node.js and Chai type definitions
+    "rootDir": "./src",                  // Root directory of source files
+    "outDir": "dist",                    // Output directory for compiled files
+    "sourceMap": true                    // Generate source maps for debugging
+  },
+  "include": ["src/**/*.ts"],            // Files to compile
+  "exclude": ["node_modules", "dist"]    // Files and folders to ignore
+}
