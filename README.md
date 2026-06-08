@@ -80,6 +80,7 @@ QA-Automation-Challenge-FrontEnd
 
 ```bash
 npm test
+npm run test:allure:open
 ```
 ---
 

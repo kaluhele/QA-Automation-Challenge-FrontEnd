@@ -14,3 +14,8 @@ Feature: Login in Sauce Demo
     Given the user navigates to the login page
     When they enter credentials "INVALID_USERNAME" and "INVALID_PASSWORD"
     Then they should see an error message
+
+  Scenario: Scenario SHOULD fail
+    Given the user navigates to the login page
+    When they enter credentials "VALID_USERNAME" and "INVALID_PASSWORD"
+    Then they should see the products page

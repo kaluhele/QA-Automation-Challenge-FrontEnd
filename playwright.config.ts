@@ -4,7 +4,9 @@ export default defineConfig({
   testDir: './tests',
   use: {
     headless: true,
-    screenshot: 'on',
-    video: 'retain-on-failure'
-  }
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    trace: 'on-first-retry'
+  },
+  webServer: undefined
 });

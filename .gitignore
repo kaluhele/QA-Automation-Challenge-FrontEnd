@@ -1,1 +1,25 @@
 node_modules
+
+# Reports
+reports/
+!reports/.gitkeep
+
+# Playwright
+.auth/
+test-results/
+playwright-report/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,1 +1,445 @@
-[]
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "shopping-cart-in-sauce-demo;user-adds-product-to-cart",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "User adds product to cart",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 529641499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "the user logs in",
+            "match": {
+              "location": "src\\steps\\cart.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 871063200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "the user adds the product \"Sauce Labs Backpack\" to the cart",
+            "match": {
+              "location": "src\\steps\\cart.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 125756100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "the product \"Sauce Labs Backpack\" should be visible in the cart",
+            "match": {
+              "location": "src\\steps\\cart.steps.ts:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 39504099
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 493781899
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "shopping-cart-in-sauce-demo",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Shopping Cart in Sauce Demo",
+    "tags": [],
+    "uri": "src\\features\\cart.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "checkout-in-sauce-demo;user-completes-a-purchase",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "User completes a purchase",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 587357000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "the user logs in",
+            "match": {
+              "location": "src\\steps\\cart.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 896505099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 5,
+            "name": "the user adds the product \"Sauce Labs Backpack\" to the cart",
+            "match": {
+              "location": "src\\steps\\cart.steps.ts:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 177179700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "the user proceeds to checkout with data \"Juan\" \"Perez\" \"15001\"",
+            "match": {
+              "location": "src\\steps\\checkout.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 286558500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "the confirmation message \"Thank you for your order!\" should be visible",
+            "match": {
+              "location": "src\\steps\\checkout.steps.ts:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9864199
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 471993400
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "checkout-in-sauce-demo",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Checkout in Sauce Demo",
+    "tags": [],
+    "uri": "src\\features\\checkout.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login-in-sauce-demo;valid-user-logs-in-properly",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Valid user logs in properly",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 571890800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "the user navigates to the login page",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 634761000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "they enter credentials \"VALID_USERNAME\" and \"VALID_PASSWORD\"",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 222192100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "they should see the products page",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1132200
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 457845100
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "login-in-sauce-demo;invalid-user-does-not-log-in-properly",
+        "keyword": "Scenario",
+        "line": 8,
+        "name": "Invalid user does not log in properly",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 570990400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 9,
+            "name": "the user navigates to the login page",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 645357299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "they enter credentials \"LOCKED_USERNAME\" and \"LOCKED_PASSWORD\"",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 167763899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "they should see an error message",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:23"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10652200
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 464563799
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "login-in-sauce-demo;locked-out-user-cannot-log-in",
+        "keyword": "Scenario",
+        "line": 13,
+        "name": "Locked out user cannot log in",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 608830100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 14,
+            "name": "the user navigates to the login page",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 648298800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 15,
+            "name": "they enter credentials \"INVALID_USERNAME\" and \"INVALID_PASSWORD\"",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 176394500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 16,
+            "name": "they should see an error message",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:23"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10201100
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 416087300
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "login-in-sauce-demo;scenario-should-fail",
+        "keyword": "Scenario",
+        "line": 18,
+        "name": "Scenario SHOULD fail",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 565104099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 19,
+            "name": "the user navigates to the login page",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 573227300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 20,
+            "name": "they enter credentials \"VALID_USERNAME\" and \"INVALID_PASSWORD\"",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 175510000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 21,
+            "name": "they should see the products page",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:19"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 2754000,
+              "error_message": "AssertionError [ERR_ASSERTION]: Expected to be on products page\n    + expected - actual\n\n    -false\n    +true\n\n    at CustomWorld.<anonymous> (file:///D:/Automation/QA-Automation-Challenge-FrontEnd/src/steps/login.steps.ts:21:12)\n    at Object.run (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\user_code_runner.js:24:27)\n    at D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\step_runner.js:64:114\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at runInTestCaseScope (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\scope\\test_case_scope.js:9:26)\n    at Object.run (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\step_runner.js:64:63)\n    at async TestCaseRunner.invokeStep (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:126:16)\n    at async TestCaseRunner.runStep (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:307:26)\n    at async D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:214:44\n    at async TestCaseRunner.aroundTestStep (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:154:32)"
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 546545199
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-in-sauce-demo",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login in Sauce Demo",
+    "tags": [],
+    "uri": "src\\features\\login.feature"
+  }
+]
