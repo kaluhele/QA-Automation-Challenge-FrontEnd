@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 529641499
+              "duration": 502376299
             }
           },
           {
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 871063200
+              "duration": 852286600
             }
           },
           {
@@ -40,7 +40,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 125756100
+              "duration": 114133600
             }
           },
           {
@@ -53,7 +53,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 39504099
+              "duration": 39337600
             }
           },
           {
@@ -61,7 +61,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 493781899
+              "duration": 393572099
             }
           }
         ],
@@ -91,7 +91,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 587357000
+              "duration": 468483399
             }
           },
           {
@@ -104,7 +104,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 896505099
+              "duration": 782803800
             }
           },
           {
@@ -117,7 +117,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 177179700
+              "duration": 167125500
             }
           },
           {
@@ -130,7 +130,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 286558500
+              "duration": 164433600
             }
           },
           {
@@ -143,7 +143,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 9864199
+              "duration": 7164799
             }
           },
           {
@@ -151,7 +151,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 471993400
+              "duration": 322228900
             }
           }
         ],
@@ -181,7 +181,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 571890800
+              "duration": 486924500
             }
           },
           {
@@ -194,7 +194,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 634761000
+              "duration": 618588800
             }
           },
           {
@@ -207,7 +207,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 222192100
+              "duration": 142957900
             }
           },
           {
@@ -220,7 +220,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1132200
+              "duration": 554500
             }
           },
           {
@@ -228,7 +228,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 457845100
+              "duration": 390438600
             }
           }
         ],
@@ -247,7 +247,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 570990400
+              "duration": 468543400
             }
           },
           {
@@ -260,7 +260,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 645357299
+              "duration": 722397300
             }
           },
           {
@@ -273,7 +273,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 167763899
+              "duration": 154585300
             }
           },
           {
@@ -286,7 +286,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 10652200
+              "duration": 7683300
             }
           },
           {
@@ -294,7 +294,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 464563799
+              "duration": 368168899
             }
           }
         ],
@@ -313,7 +313,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 608830100
+              "duration": 550233500
             }
           },
           {
@@ -326,7 +326,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 648298800
+              "duration": 684978300
             }
           },
           {
@@ -339,7 +339,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 176394500
+              "duration": 139541100
             }
           },
           {
@@ -352,7 +352,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 10201100
+              "duration": 7642799
             }
           },
           {
@@ -360,7 +360,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 416087300
+              "duration": 331150599
             }
           }
         ],
@@ -379,7 +379,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 565104099
+              "duration": 511084700
             }
           },
           {
@@ -392,7 +392,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 573227300
+              "duration": 637298000
             }
           },
           {
@@ -405,7 +405,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 175510000
+              "duration": 171320400
             }
           },
           {
@@ -418,7 +418,7 @@
             },
             "result": {
               "status": "failed",
-              "duration": 2754000,
+              "duration": 1903299,
               "error_message": "AssertionError [ERR_ASSERTION]: Expected to be on products page\n    + expected - actual\n\n    -false\n    +true\n\n    at CustomWorld.<anonymous> (file:///D:/Automation/QA-Automation-Challenge-FrontEnd/src/steps/login.steps.ts:21:12)\n    at Object.run (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\user_code_runner.js:24:27)\n    at D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\step_runner.js:64:114\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at runInTestCaseScope (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\scope\\test_case_scope.js:9:26)\n    at Object.run (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\step_runner.js:64:63)\n    at async TestCaseRunner.invokeStep (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:126:16)\n    at async TestCaseRunner.runStep (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:307:26)\n    at async D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:214:44\n    at async TestCaseRunner.aroundTestStep (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:154:32)"
             }
           },
@@ -427,11 +427,90 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 546545199
+              "duration": 436963800
             }
           }
         ],
         "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "login-in-sauce-demo;scenario-should-skip",
+        "keyword": "Scenario",
+        "line": 24,
+        "name": "Scenario SHOULD Skip",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "skipped",
+              "duration": 122100
+            }
+          },
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 25,
+            "name": "the user navigates to the login page",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:7"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 26,
+            "name": "they enter credentials \"VALID_USERNAME\" and \"INVALID_PASSWORD\"",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:11"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 27,
+            "name": "they should see the products page",
+            "match": {
+              "location": "src\\steps\\login.steps.ts:19"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 44099
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@skip",
+            "line": 23
+          }
+        ],
         "type": "scenario"
       }
     ],

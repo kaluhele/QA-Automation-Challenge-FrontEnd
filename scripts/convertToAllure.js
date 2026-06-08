@@ -161,17 +161,19 @@ try {
  * Obtiene el estado del scenario
  */
 function getScenarioStatus(scenario) {
-  if (!scenario.steps || scenario.steps.length === 0) {
+  const visibleSteps = scenario.steps ? scenario.steps.filter(s => !s.hidden) : [];
+
+  if (!visibleSteps.length) {
     return 'skipped';
   }
 
-  const failedSteps = scenario.steps.filter(s => s.result.status === 'failed');
+  const failedSteps = visibleSteps.filter(s => s.result.status === 'failed');
   if (failedSteps.length > 0) {
     return 'failed';
   }
 
-  const skippedSteps = scenario.steps.filter(s => s.result.status === 'skipped' || s.result.status === 'pending');
-  if (skippedSteps.length === scenario.steps.length) {
+  const skippedSteps = visibleSteps.filter(s => s.result.status === 'skipped' || s.result.status === 'pending');
+  if (skippedSteps.length === visibleSteps.length) {
     return 'skipped';
   }
 
