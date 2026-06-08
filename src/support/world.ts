@@ -14,14 +14,14 @@ class CustomWorld extends World {
 
   constructor(options: IWorldOptions) {
     super(options);
-    // Crear directorio de screenshots si no existe
+    // Create screenshots directory if it does not exist
     if (!fs.existsSync(this.screenshotsPath)) {
       fs.mkdirSync(this.screenshotsPath, { recursive: true });
     }
   }
 
   /**
-   * Captura una screenshot y la asocia al reporte
+   * Capture a screenshot and attach it to the report
    */
   async captureScreenshot(name: string): Promise<void> {
     if (this.page) {
@@ -32,19 +32,19 @@ class CustomWorld extends World {
       const buffer = await this.page.screenshot({ fullPage: true });
       await fs.promises.writeFile(filepath, buffer);
       
-      // Agregar screenshot a Allure
+      // Add screenshot to Allure
       try {
         allure.addAttachment(name, buffer, 'image/png');
       } catch (e) {
-        // Allure no está disponible, continuar
+        // Allure is not available, continue
       }
       
-      console.log(`Screenshot capturada: ${filename}`);
+      console.log(`Screenshot captured: ${filename}`);
     }
   }
 
   /**
-   * Captura screenshot en caso de error
+   * Capture a screenshot on error
    */
   async captureErrorScreenshot(stepName: string): Promise<void> {
     if (this.page) {
@@ -55,14 +55,14 @@ class CustomWorld extends World {
       const buffer = await this.page.screenshot({ fullPage: true });
       await fs.promises.writeFile(filepath, buffer);
       
-      // Agregar screenshot a Allure como evidencia de fallo
+      // Add screenshot to Allure as failure evidence
       try {
         allure.addAttachment(`ERROR: ${stepName}`, buffer, 'image/png');
       } catch (e) {
-        // Allure no está disponible, continuar
+        // Allure is not available, continue
       }
       
-      console.log(`Screenshot de error capturada: ${filename}`);
+      console.log(`Error screenshot captured: ${filename}`);
     }
   }
 }

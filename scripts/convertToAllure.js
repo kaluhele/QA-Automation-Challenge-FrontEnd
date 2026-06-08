@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Convertidor de resultados Cucumber JSON a formato Allure
- * Genera resultados JSON en el directorio de Allure con screenshots
+ * Converter for Cucumber JSON results to Allure format
+ * Generates JSON results in the Allure directory with screenshots
  */
 
 import fs from 'fs';
@@ -16,19 +16,19 @@ const CUCUMBER_REPORT = './reports/cucumber-report.json';
 const ALLURE_RESULTS_DIR = './reports/allure-results';
 const SCREENSHOTS_DIR = './reports/screenshots';
 
-// Crear directorio si no existe
+// Create directory if it does not exist
 if (!fs.existsSync(ALLURE_RESULTS_DIR)) {
   fs.mkdirSync(ALLURE_RESULTS_DIR, { recursive: true });
 }
 
 try {
-  // Leer reporte de Cucumber
+  // Read Cucumber report
   if (!fs.existsSync(CUCUMBER_REPORT)) {
-    console.error('❌ No se encontró el reporte JSON de Cucumber');
+    console.error('❌ Cucumber JSON report not found');
     process.exit(1);
   }
 
-  // Obtener lista de screenshots
+  // Get list of screenshots
   const screenshots = [];
   if (fs.existsSync(SCREENSHOTS_DIR)) {
     const files = fs.readdirSync(SCREENSHOTS_DIR);
@@ -41,7 +41,7 @@ try {
 
   const cucumberData = JSON.parse(fs.readFileSync(CUCUMBER_REPORT, 'utf8'));
 
-  // Convertir cada scenario a un resultado de Allure
+  // Convert each scenario into an Allure result
   let resultIndex = 1;
 
   cucumberData.forEach(feature => {
@@ -102,13 +102,13 @@ try {
         hasContent: true
       };
 
-      // Guardar resultado de Allure
+      // Save Allure result
       const filename = `${allureResult.uuid}-result.json`;
       fs.writeFileSync(path.join(ALLURE_RESULTS_DIR, filename), JSON.stringify(allureResult, null, 2));
     });
   });
 
-  // Copiar screenshots al directorio de Allure
+  // Copy screenshots to the Allure directory
   if (fs.existsSync(SCREENSHOTS_DIR)) {
     screenshots.forEach(screenshot => {
       const src = path.join(SCREENSHOTS_DIR, screenshot);
@@ -116,12 +116,12 @@ try {
       try {
         fs.copyFileSync(src, dest);
       } catch (err) {
-        console.warn(`⚠️ No se pudo copiar screenshot: ${screenshot}`);
+        console.warn(`⚠️ Could not copy screenshot: ${screenshot}`);
       }
     });
   }
 
-  // Crear archivo de categorías para Allure
+  // Create categories file for Allure
   const categories = {
     categories: [
       {
@@ -148,17 +148,17 @@ try {
     JSON.stringify(categories, null, 2)
   );
 
-  console.log('✅ Resultados convertidos a formato Allure');
-  console.log(`📊 Total de scenarios: ${resultIndex - 1}`);
-  console.log(`📸 Screenshots incluidos: ${screenshots.length}`);
+  console.log('✅ Results converted to Allure format');
+  console.log(`📊 Total scenarios: ${resultIndex - 1}`);
+  console.log(`📸 Screenshots included: ${screenshots.length}`);
 
 } catch (error) {
-  console.error('❌ Error al convertir resultados:', error.message);
+  console.error('❌ Error converting results:', error.message);
   process.exit(1);
 }
 
 /**
- * Obtiene el estado del scenario
+ * Get the status of the scenario
  */
 function getScenarioStatus(scenario) {
   const visibleSteps = scenario.steps ? scenario.steps.filter(s => !s.hidden) : [];
@@ -181,7 +181,7 @@ function getScenarioStatus(scenario) {
 }
 
 /**
- * Calcula la duración total del scenario
+ * Calculate the total duration of the scenario
  */
 function calculateDuration(scenario) {
   if (!scenario.steps) return 0;
@@ -192,7 +192,7 @@ function calculateDuration(scenario) {
 }
 
 /**
- * Agrega screenshots como adjuntos
+ * Add screenshots as attachments
  */
 function addScreenshotAttachments(screenshots) {
   return screenshots.map(screenshot => ({

@@ -1,83 +1,83 @@
-# ⚡ Quick Start - Allure Reports + Snapshots
+#  Quick Start - Allure Reports + Snapshots
 
-## ⭐ Comando Único para Todo
+##  One Command for Everything
 
 ```bash
 npm run test:allure:open
 ```
 
-Esto ejecuta:
-1. ✅ Pruebas
-2. ✅ Captura screenshots
-3. ✅ Genera reporte **Allure profesional y gráfico**
-4. ✅ Abre en navegador
+This runs:
+1. ✅ Tests
+2. ✅ Screenshot capture
+3. ✅ Generates a professional, graphical **Allure** report
+4. ✅ Opens it in your browser
 
 ---
 
-## 🎨 Lo que Verás en Allure
+## What You Will See in Allure
 
-- 📊 Dashboard con gráficos bonitos
-- 📈 Estadísticas de tests (Passed/Failed/Skipped)
-- ⏱️ Duración de cada test
-- 🖼️ Screenshots integradas en cada paso
-- 📝 Timeline de ejecución
-- 🎭 Categorización de fallos
+- 📊 Nice graphical dashboard
+- 📈 Test stats (Passed/Failed/Skipped)
+- ⏱️ Test duration details
+- 🖼️ Embedded screenshots in each step
+- 📝 Execution timeline
+- 🎭 Failure categorization
 
 ---
 
-## 📸 Usar Snapshots en tus Tests
+## Use Snapshots in Your Tests
 
-En cualquier `step definition`:
+In any `step definition`:
 
 ```typescript
 import { CustomWorld } from '../support/world';
 import { When } from '@cucumber/cucumber';
 
-When('algo ocurre', async function (this: CustomWorld) {
-  // Tu código...
+When('something happens', async function (this: CustomWorld) {
+  // Your code...
   
-  // Capturar screenshot - aparecerá en Allure
-  await this.captureScreenshot('Mi snapshot descriptivo');
+  // Capture screenshot - it will appear in Allure
+  await this.captureScreenshot('My descriptive snapshot');
 });
 ```
 
-**La screenshot aparecerá automáticamente en el reporte Allure** 📸
+**The screenshot will appear automatically in the Allure report** 📸
 
 ---
 
-## 📊 Otros Comandos
+## Other Commands
 
 ```bash
-# Ejecutar tests y generar reporte (sin abrir navegador)
+# Run tests and generate report (without opening browser)
 npm run test:allure
 
-# Solo abrir reporte Allure existente
+# Open an existing Allure report
 npm run open:allure
 
-# Solo ejecutar tests
+# Run tests only
 npm test
 ```
 
 ---
 
-## 📁 Dónde se Guardan
+## Where Files Are Saved
 
 ```
 reports/
-├── allure-report/          ← El reporte gráfico está aquí
-└── screenshots/            ← Tus screenshots capturadas
+├── allure-report/          ← The graphical report is here
+└── screenshots/            ← Your captured screenshots
 ```
 
 ---
 
-## 📚 Documentación Completa
+## Full Documentation
 
-Lee [ALLURE_REPORTS.md](ALLURE_REPORTS.md) para:
-- Configuración avanzada
-- Mejores prácticas
-- Ejemplos de código
+Read [ALLURE_REPORTS.md](ALLURE_REPORTS.md) for:
+- Advanced configuration
+- Best practices
+- Code examples
 - Troubleshooting
 
 ---
 
-**¡Ejecuta `npm run test:allure:open` y disfruta del reporte gráfico!** 🎉✨
+**Run `npm run test:allure:open` and enjoy the graphical report!** 🎉✨

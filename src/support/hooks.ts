@@ -12,7 +12,7 @@ Before(async function (this: CustomWorld) {
 });
 
 After(async function (this: CustomWorld, { result, pickle }) {
-  // Capturar screenshot en caso de fallo
+  // Capture screenshot on failure
   if (result?.status === Status.FAILED) {
     if (this.page) {
       const screenshotName = `FAILED_${pickle.name.replace(/\s+/g, '_')}`;

@@ -1,234 +1,234 @@
-# 📊 Guía de Reportes con Snapshots
+# Reporting Guide with Snapshots
 
-Este documento describe cómo usar el sistema de reportes mejorado con snapshots para tu suite de pruebas Cucumber + Playwright.
+This document explains how to use the enhanced reporting system with snapshots for your Cucumber + Playwright test suite.
 
-## 🎯 Características
+## Features
 
-- ✅ **Reporte HTML interactivo** con screenshots integradas
-- ✅ **Captura automática** de screenshots en fallos
-- ✅ **Captura manual** de screenshots en cualquier momento
-- ✅ **Estadísticas detalladas** del test run
-- ✅ **Interfaz amigable** con modo oscuro y modal para ampliar imágenes
-- ✅ **Organización por features y scenarios**
+- ✅ **Interactive HTML report** with embedded screenshots
+- ✅ **Automatic screenshot capture** on failures
+- ✅ **Manual screenshot capture** at any time
+- ✅ **Detailed test run statistics**
+- ✅ **Friendly UI** with dark mode and image enlarge modal
+- ✅ **Organization by features and scenarios**
 
-## 🚀 Uso Rápido
+## Quick Start
 
-### ⭐ Opción Recomendada: Ejecutar pruebas y abrir reporte automáticamente
+### Recommended Option: Run tests and open report automatically
 
 ```bash
 npm run test:report:open
 ```
 
-Este comando ejecuta las pruebas, genera el reporte y lo abre automáticamente en tu navegador predeterminado.
+This command runs the tests, generates the report, and opens it automatically in your default browser.
 
-### Otras Opciones
+### Other Options
 
-#### 1. Ejecutar pruebas y generar reporte (sin abrir navegador)
+#### 1. Run tests and generate report (without opening browser)
 
 ```bash
 npm run test:report
 ```
 
-#### 2. Generar reporte HTML (sin ejecutar pruebas)
+#### 2. Generate HTML report (without running tests)
 
-Si ya ejecutaste las pruebas y quieres regenerar el reporte:
+If you already ran the tests and want to regenerate the report:
 
 ```bash
 npm run generate:html-report
 ```
 
-#### 3. Ver el reporte
+#### 3. View the report
 
-Abre el archivo generado en tu navegador:
+Open the generated file in your browser:
 ```
 reports/cucumber-report-with-snapshots.html
 ```
 
-## 📸 Captura Automática de Screenshots
+## Automatic Screenshot Capture
 
-Las screenshots se capturan automáticamente en los siguientes casos:
+Screenshots are automatically captured in the following cases:
 
-### En fallos
-Cuando un scenario falla, se captura automáticamente una screenshot del estado de la página en ese momento. El nombre seguirá el patrón:
+### On failures
+When a scenario fails, a screenshot is automatically captured of the page state at that moment. The file name will follow the pattern:
 ```
-FAILED_{NombreDelScenario}_{timestamp}.png
+FAILED_{ScenarioName}_{timestamp}.png
 ```
 
-### Manual en tus steps
+### Manual in your steps
 
-En cualquiera de tus step definitions, puedes capturar una screenshot manualmente:
+In any of your step definitions, you can capture a screenshot manually:
 
 ```typescript
 import { Given, When, Then } from '@cucumber/cucumber';
 import { CustomWorld } from '../support/world';
 
-When('el usuario hace clic en el botón', async function (this: CustomWorld) {
+When('the user clicks the button', async function (this: CustomWorld) {
   await this.page.click('button.submit');
   
-  // Capturar screenshot después de la acción
-  await this.captureScreenshot('Después de hacer clic en submit');
+  // Capture screenshot after the action
+  await this.captureScreenshot('After clicking submit');
 });
 
-Then('verifico el resultado', async function (this: CustomWorld) {
-  // Capturar screenshot antes de hacer una verificación
-  await this.captureScreenshot('Estado de la página antes de verificación');
+Then('I verify the result', async function (this: CustomWorld) {
+  // Capture screenshot before verification
+  await this.captureScreenshot('Page state before verification');
   
   const heading = await this.page.textContent('h1');
-  expect(heading).to.equal('Éxito');
+  expect(heading).to.equal('Success');
 });
 ```
 
-### Métodos disponibles en CustomWorld
+### Methods available in CustomWorld
 
 #### `captureScreenshot(name: string)`
-Captura una screenshot con nombre descriptivo.
-- `name`: Nombre descriptivo de la screenshot (se reemplazarán espacios por guiones bajos)
+Captures a screenshot with a descriptive name.
+- `name`: Descriptive screenshot name (spaces will be replaced with underscores)
 
-**Ejemplo:**
+**Example:**
 ```typescript
-await this.captureScreenshot('Formulario de login completado');
-// Genera: Formulario_de_login_completado_{timestamp}.png
+await this.captureScreenshot('Login form completed');
+// Generates: Login_form_completed_{timestamp}.png
 ```
 
 #### `captureErrorScreenshot(stepName: string)`
-Captura automáticamente una screenshot de error (usada internamente por hooks).
+Captures an error screenshot automatically (used internally by hooks).
 
-## 📁 Estructura de Archivos de Reporte
+## Report File Structure
 
 ```
 reports/
-├── cucumber-report.json              # Reporte JSON de Cucumber
-├── cucumber-report.html              # Reporte HTML básico
-├── cucumber-report-with-snapshots.html  # Reporte interactivo con snapshots ⭐
-└── screenshots/                      # Directorio de screenshots
-    ├── Formulario_de_login_1234567890.png
-    ├── Carrito_de_compras_1234567891.png
+├── cucumber-report.json              # Cucumber JSON report
+├── cucumber-report.html              # Basic HTML report
+├── cucumber-report-with-snapshots.html  # Interactive report with snapshots ⭐
+└── screenshots/                      # Screenshot directory
+    ├── Login_form_1234567890.png
+    ├── Shopping_cart_1234567891.png
     └── FAILED_Checkout_1234567892.png
 ```
 
-## 🎨 Características del Reporte HTML
+## HTML Report Features
 
-### Interfaz Interactiva
-- **Header**: Título y descripción
-- **Panel de Estadísticas**: Resumen de passed, failed, skipped y total
-- **Features Expandibles**: Haz clic en cada feature para expandir/contraer
-- **Navegación por Scenarios**: Visualiza cada scenario con su estado
-- **Vista de Screenshots**: Grid de screenshots con vista previa
+### Interactive Interface
+- **Header**: Title and description
+- **Statistics Panel**: Summary of passed, failed, skipped, and total
+- **Expandable Features**: Click each feature to expand/collapse
+- **Scenario Navigation**: View each scenario with its status
+- **Screenshot View**: Screenshot grid with preview
 
-### Modal de Ampliación
-- Haz clic en cualquier screenshot para verla en tamaño completo
-- Cierra el modal haciendo clic en la X o fuera de la imagen
+### Expand Modal
+- Click any screenshot to view it at full size
+- Close the modal by clicking the X or outside the image
 
-### Códigos de Color
-- 🟢 **Verde**: Scenarios/Steps pasados
-- 🔴 **Rojo**: Scenarios/Steps fallidos
-- 🟡 **Amarillo**: Scenarios/Steps omitidos
+### Color Codes
+- 🟢 **Green**: Passed scenarios/steps
+- 🔴 **Red**: Failed scenarios/steps
+- 🟡 **Yellow**: Skipped scenarios/steps
 
-## 📋 Configuración
+## Configuration
 
 ### playwright.config.ts
-Las siguientes opciones están configuradas para captura automática:
+The following options are configured for automatic capture:
 
 ```typescript
 use: {
-  headless: true,                    // Navegador sin interfaz
-  screenshot: 'only-on-failure',     // Capturar solo en fallos
-  video: 'retain-on-failure',        // Videos en fallos
-  trace: 'on-first-retry'            // Trace de Playwright
+  headless: true,                    // Headless browser
+  screenshot: 'only-on-failure',     // Capture only on failures
+  video: 'retain-on-failure',        // Videos on failures
+  trace: 'on-first-retry'            // Playwright trace
 }
 ```
 
 ### cucumber.js
-Configuración de formatters:
+Formatters configuration:
 
 ```javascript
 format: [
-  'progress',                              // Consola
+  'progress',                              // Console
   'json:reports/cucumber-report.json',    // JSON
-  'html:reports/cucumber-report.html',    // HTML básico
-  '@cucumber/pretty-formatter'            // Formato bonito
+  'html:reports/cucumber-report.html',    // Basic HTML
+  '@cucumber/pretty-formatter'            // Pretty formatting
 ]
 ```
 
-## 💡 Mejores Prácticas
+## Best Practices
 
-### 1. Captura Estratégica
+### 1. Strategic Capture
 ```typescript
-// ✅ BIEN: Capturar en puntos críticos
-When('el usuario completa el formulario', async function (this: CustomWorld) {
+// ✅ GOOD: Capture at critical points
+When('the user fills out the form', async function (this: CustomWorld) {
   await this.page.fill('[name="email"]', 'test@example.com');
   await this.page.fill('[name="password"]', 'password123');
-  await this.captureScreenshot('Formulario completado');
+  await this.captureScreenshot('Completed form');
   await this.page.click('button[type="submit"]');
 });
 ```
 
-### 2. Nombres Descriptivos
+### 2. Descriptive Names
 ```typescript
-// ✅ BIEN: Nombre claro y descriptivo
-await this.captureScreenshot('Carrito con 3 productos');
+// ✅ GOOD: Clear descriptive name
+await this.captureScreenshot('Cart with 3 items');
 
-// ❌ EVITAR: Nombres genéricos
+// ❌ AVOID: Generic names
 await this.captureScreenshot('Screenshot 1');
 ```
 
-### 3. Flujo Completo
+### 3. Full Flow
 ```typescript
-Then('verifico la compra', async function (this: CustomWorld) {
-  await this.captureScreenshot('Página de confirmación antes de verificación');
+Then('I verify the purchase', async function (this: CustomWorld) {
+  await this.captureScreenshot('Confirmation page before verification');
   
   const message = await this.page.textContent('.confirmation-message');
-  expect(message).to.include('¡Gracias por tu compra!');
+  expect(message).to.include('Thank you for your purchase!');
   
-  await this.captureScreenshot('Página de confirmación después de verificación');
+  await this.captureScreenshot('Confirmation page after verification');
 });
 ```
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
-### Screenshots no aparecen en el reporte
-1. Verifica que las pruebas ejecuten correctamente: `npm test`
-2. Revisa la carpeta `reports/screenshots/` para ver si hay archivos
-3. Regenera el reporte: `npm run generate:html-report`
+### Screenshots do not appear in the report
+1. Verify the tests ran successfully: `npm test`
+2. Check the `reports/screenshots/` folder for files
+3. Regenerate the report: `npm run generate:html-report`
 
-### El reporte HTML no se genera
-1. Asegúrate de que existe `reports/cucumber-report.json`
-2. Ejecuta primero las pruebas: `npm test`
-3. Intenta regenerar manualmente: `npm run generate:html-report`
+### HTML report does not generate
+1. Make sure `reports/cucumber-report.json` exists
+2. Run the tests first: `npm test`
+3. Try regenerating manually: `npm run generate:html-report`
 
-### Screenshots negras o borrosas
-1. Aumenta el tiempo de espera antes de capturar:
+### Black or blurry screenshots
+1. Increase wait time before capture:
    ```typescript
-   await this.page.waitForSelector('.elemento-importante');
-   await this.captureScreenshot('Elemento visible');
+   await this.page.waitForSelector('.important-element');
+   await this.captureScreenshot('Visible element');
    ```
-2. Usa `fullPage: true` (ya configurado por defecto)
+2. Use `fullPage: true` (already configured by default)
 
-## 📊 Scripts Disponibles
+## Available Scripts
 
 ```bash
-# ⭐ RECOMENDADO: Ejecutar pruebas y abrir reporte automáticamente
+# RECOMMENDED: Run tests and open the report automatically
 npm run test:report:open
 
-# Ejecutar pruebas y generar reporte
+# Run tests and generate report
 npm run test:report
 
-# Generar solo el reporte HTML (sin ejecutar pruebas)
+# Generate only the HTML report (without running tests)
 npm run generate:html-report
 
-# Ejecutar pruebas
+# Run tests
 npm test
 
-# Generar reporte Allure (opcional, si configuraste Allure)
+# Generate Allure report (optional, if configured)
 npm run generate:allure
 ```
 
-## 🔄 Integración Continua
+## Continuous Integration
 
-Para usar esto en tu pipeline CI/CD:
+Use this in your CI/CD pipeline:
 
 ```yaml
-# Ejemplo con GitHub Actions
+# Example with GitHub Actions
 - name: Run tests and generate report
   run: npm run test:report
 
@@ -240,14 +240,14 @@ Para usar esto en tu pipeline CI/CD:
     path: reports/
 ```
 
-## 📝 Notas Importantes
+## Important Notes
 
-- Las screenshots se guardan como **PNG de página completa** (fullPage)
-- Los nombres de archivo se generan con **timestamp** para evitar sobrescrituras
-- El reporte HTML es **autoexplicativo** y no requiere dependencias externas
-- Puedes **compartir el archivo HTML** como reporte con el equipo
-- Las screenshots se guardan en **reports/screenshots/** por defecto
+- Screenshots are saved as **full-page PNG** files (fullPage)
+- Filenames are generated with a **timestamp** to avoid overwriting
+- The HTML report is **self-contained** and does not require external dependencies
+- You can **share the HTML file** as a report with your team
+- Screenshots are stored in **reports/screenshots/** by default
 
 ---
 
-¡Disfruta de tus reportes detallados con snapshots! 📸✨
+Enjoy your detailed snapshot-enabled reports! 📸✨

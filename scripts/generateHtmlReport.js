@@ -7,8 +7,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**
- * Generador de Reporte HTML con Snapshots para Cucumber
- * Integra screenshots capturadas durante las pruebas en el reporte
+ * HTML Report Generator with Snapshots for Cucumber
+ * Integrates screenshots captured during test execution into the report
  */
 
 const REPORTS_DIR = './reports';
@@ -16,7 +16,7 @@ const SCREENSHOTS_DIR = './reports/screenshots';
 const CUCUMBER_REPORT = './reports/cucumber-report.json';
 const OUTPUT_FILE = './reports/cucumber-report-with-snapshots.html';
 
-// Crear directorio si no existe
+// Create directory if it does not exist
 if (!fs.existsSync(REPORTS_DIR)) {
   fs.mkdirSync(REPORTS_DIR, { recursive: true });
 }
@@ -25,28 +25,28 @@ if (!fs.existsSync(SCREENSHOTS_DIR)) {
   fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
 }
 
-// Leer el reporte JSON
+// Read the JSON report
 if (!fs.existsSync(CUCUMBER_REPORT)) {
-  console.error('No se encontró el reporte JSON. Ejecuta npm test primero.');
+  console.error('JSON report not found. Run npm test first.');
   process.exit(1);
 }
 
 const cucumberReport = JSON.parse(fs.readFileSync(CUCUMBER_REPORT, 'utf8'));
 const screenshots = fs.readdirSync(SCREENSHOTS_DIR).filter(f => f.endsWith('.png')) || [];
 
-console.log(`Procesando reporte con ${screenshots.length} screenshots...`);
+console.log(`Processing report with ${screenshots.length} screenshots...`);
 
 /**
- * Genera HTML con el reporte y las screenshots
+ * Generates HTML report with snapshots
  */
 function generateHtmlReport() {
   let html = `
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Pruebas - Cucumber + Playwright</title>
+    <title>Automated Test Report - Cucumber + Playwright</title>
     <style>
         * {
             margin: 0;
@@ -388,27 +388,27 @@ function generateHtmlReport() {
 <body>
     <div class="container">
         <div class="header">
-            <h1>📊 Reporte de Pruebas Automatizadas</h1>
+            <h1>📊 Automated Test Report</h1>
             <p>Cucumber + Playwright + TypeScript</p>
         </div>
   `;
 
-  // Calcular estadísticas
+  // Calculate statistics
   const stats = calculateStats(cucumberReport);
   
   html += `
         <div class="summary">
             <div class="stat passed">
                 <div class="stat-number">${stats.passed}</div>
-                <div class="stat-label">Pasadas</div>
+                <div class="stat-label">Passed</div>
             </div>
             <div class="stat failed">
                 <div class="stat-number">${stats.failed}</div>
-                <div class="stat-label">Fallidas</div>
+                <div class="stat-label">Failed</div>
             </div>
             <div class="stat skipped">
                 <div class="stat-number">${stats.skipped}</div>
-                <div class="stat-label">Omitidas</div>
+                <div class="stat-label">Skipped</div>
             </div>
             <div class="stat">
                 <div class="stat-number">${stats.total}</div>
@@ -419,7 +419,7 @@ function generateHtmlReport() {
 
   html += '<div class="content">';
 
-  // Procesar features
+  // Process features
   cucumberReport.forEach((feature, featureIndex) => {
     const featureStats = calculateFeatureStats(feature);
     const status = featureStats.failed > 0 ? 'failed' : featureStats.passed > 0 ? 'passed' : 'skipped';
@@ -433,7 +433,7 @@ function generateHtmlReport() {
                 <div class="feature-body" id="feature-${featureIndex}">
     `;
 
-    // Procesar scenarios
+    // Process scenarios
     if (feature.elements) {
       feature.elements.forEach((scenario, scenarioIndex) => {
         const scenarioStatus = getScenarioStatus(scenario);
@@ -446,7 +446,7 @@ function generateHtmlReport() {
                         </div>
         `;
 
-        // Procesar steps
+        // Process steps
         if (scenario.steps) {
           scenario.steps.forEach((step) => {
             const stepStatus = step.result.status;
@@ -458,7 +458,7 @@ function generateHtmlReport() {
           });
         }
 
-        // Agregar screenshots si existen
+        // Add screenshots if they exist
         if (screenshots.length > 0) {
           html += `
                         <div class="screenshots-section">
@@ -496,12 +496,12 @@ function generateHtmlReport() {
 
   html += `
         <div class="footer">
-            <p>Reporte generado automáticamente por Cucumber + Playwright</p>
-            <div class="timestamp">Generado: ${new Date().toLocaleString('es-ES')}</div>
+            <p>Report generated automatically by Cucumber + Playwright</p>
+            <div class="timestamp">Generated: ${new Date().toLocaleString('en-US')}</div>
         </div>
     </div>
 
-    <!-- Modal para ver screenshots en grande -->
+    <!-- Modal to view screenshots in full size -->
     <div id="imageModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
@@ -527,7 +527,7 @@ function generateHtmlReport() {
             modal.classList.remove('show');
         }
 
-        // Cerrar modal al hacer click fuera de la imagen
+        // Close modal when clicking outside the image
         window.addEventListener('click', function(event) {
             const modal = document.getElementById('imageModal');
             if (event.target === modal) {
@@ -535,7 +535,7 @@ function generateHtmlReport() {
             }
         });
 
-        // Expandir todas las features por defecto
+        // Expand all features by default
         document.querySelectorAll('.feature-body').forEach(body => {
             body.classList.add('show');
         });
@@ -548,7 +548,7 @@ function generateHtmlReport() {
 }
 
 /**
- * Calcula estadísticas del reporte
+ * Calculate report statistics
  */
 function calculateStats(report) {
   let passed = 0, failed = 0, skipped = 0, total = 0;
@@ -569,7 +569,7 @@ function calculateStats(report) {
 }
 
 /**
- * Calcula estadísticas de una feature
+ * Calculate statistics for a feature
  */
 function calculateFeatureStats(feature) {
   let passed = 0, failed = 0;
@@ -586,7 +586,7 @@ function calculateFeatureStats(feature) {
 }
 
 /**
- * Obtiene el estado de un scenario
+ * Get the status of a scenario
  */
 function getScenarioStatus(scenario) {
   const visibleSteps = scenario.steps ? scenario.steps.filter(s => !s.hidden) : [];
@@ -609,7 +609,7 @@ function getScenarioStatus(scenario) {
 }
 
 /**
- * Escapa caracteres HTML
+ * Escape HTML characters
  */
 function escapeHtml(text) {
   const map = {
@@ -622,10 +622,10 @@ function escapeHtml(text) {
   return text.replace(/[&<>"']/g, m => map[m]);
 }
 
-// Generar el archivo HTML
+// Generate the HTML file
 const htmlContent = generateHtmlReport();
 fs.writeFileSync(OUTPUT_FILE, htmlContent);
 
-console.log(`\n✅ Reporte generado exitosamente: ${OUTPUT_FILE}`);
-console.log(`📊 Total de screenshots: ${screenshots.length}`);
-console.log(`\nPuedes abrir el reporte en tu navegador.`);
+console.log(`\n✅ Report generated successfully: ${OUTPUT_FILE}`);
+console.log(`📊 Total screenshots: ${screenshots.length}`);
+console.log(`\nYou can open the report in your browser.`);

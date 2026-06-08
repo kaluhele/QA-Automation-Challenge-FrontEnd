@@ -1,8 +1,8 @@
 /**
- * EJEMPLO DE USO DE CAPTURA DE SCREENSHOTS EN STEPS
+ * EXAMPLE OF USING SCREENSHOT CAPTURE IN STEPS
  * 
- * Este archivo muestra cómo integrar capturas de screenshots en tus
- * step definitions usando el método captureScreenshot() de CustomWorld
+ * This file shows how to integrate screenshot capture in your
+ * step definitions using CustomWorld.captureScreenshot()
  */
 
 import { Given, When, Then } from '@cucumber/cucumber';
@@ -10,221 +10,221 @@ import { CustomWorld } from '../support/world';
 import { expect } from 'chai';
 
 // ============================================
-// EJEMPLO 1: Login
+// EXAMPLE 1: Login
 // ============================================
 
-Given('el usuario navega a la página de login', async function (this: CustomWorld) {
-  // Navegar a la página
+Given('the user navigates to the login page', async function (this: CustomWorld) {
+  // Navigate to the page
   await this.page.goto('https://example.com/login');
   
-  // Capturar screenshot de la página de login
-  await this.captureScreenshot('Página de login inicial');
+  // Capture screenshot of the login page
+  await this.captureScreenshot('Initial login page');
 });
 
-When('el usuario completa el formulario de login con credenciales válidas', async function (this: CustomWorld) {
-  // Llenar email
-  await this.page.fill('[name="email"]', 'usuario@example.com');
+When('the user completes the login form with valid credentials', async function (this: CustomWorld) {
+  // Fill email
+  await this.page.fill('[name="email"]', 'user@example.com');
   
-  // Llenar password
-  await this.page.fill('[name="password"]', 'contraseña123');
+  // Fill password
+  await this.page.fill('[name="password"]', 'password123');
   
-  // Capturar screenshot con el formulario completado
-  await this.captureScreenshot('Formulario de login completo');
+  // Capture screenshot with the completed form
+  await this.captureScreenshot('Completed login form');
   
-  // Hacer clic en submit
+  // Click submit
   await this.page.click('button[type="submit"]');
   
-  // Esperar a que se cargue la página siguiente
+  // Wait for the next page to load
   await this.page.waitForNavigation();
 });
 
-Then('el usuario debería ver el dashboard', async function (this: CustomWorld) {
-  // Capturar screenshot del dashboard
-  await this.captureScreenshot('Dashboard después del login');
+Then('the user should see the dashboard', async function (this: CustomWorld) {
+  // Capture screenshot of the dashboard
+  await this.captureScreenshot('Dashboard after login');
   
-  // Verificar que estamos en el dashboard
+  // Verify that we are on the dashboard
   const heading = await this.page.textContent('h1');
   expect(heading).to.include('Dashboard');
 });
 
 // ============================================
-// EJEMPLO 2: Agregar producto al carrito
+// EXAMPLE 2: Add product to cart
 // ============================================
 
-When('el usuario busca un producto', async function (this: CustomWorld) {
-  // Escribir en el buscador
-  await this.page.fill('[placeholder="Buscar productos"]', 'laptop');
+When('the user searches for a product', async function (this: CustomWorld) {
+  // Type in the search field
+  await this.page.fill('[placeholder="Search products"]', 'laptop');
   
-  // Presionar Enter
-  await this.page.press('[placeholder="Buscar productos"]', 'Enter');
+  // Press Enter
+  await this.page.press('[placeholder="Search products"]', 'Enter');
   
-  // Esperar a que carguen los resultados
+  // Wait for the results to load
   await this.page.waitForSelector('.product-item');
   
-  // Capturar screenshot de los resultados
-  await this.captureScreenshot('Resultados de búsqueda de laptop');
+  // Capture screenshot of the results
+  await this.captureScreenshot('Laptop search results');
 });
 
-When('el usuario hace clic en el primer producto', async function (this: CustomWorld) {
-  // Hacer clic en el primer producto
+When('the user clicks the first product', async function (this: CustomWorld) {
+  // Click the first product
   await this.page.click('.product-item:first-child');
   
-  // Esperar a que cargue la página del producto
+  // Wait for the product page to load
   await this.page.waitForSelector('.product-details');
   
-  // Capturar screenshot de la página del producto
-  await this.captureScreenshot('Página de detalles del producto');
+  // Capture screenshot of the product page
+  await this.captureScreenshot('Product details page');
 });
 
-When('el usuario agrega el producto al carrito', async function (this: CustomWorld) {
-  // Cambiar cantidad si es necesario
+When('the user adds the product to the cart', async function (this: CustomWorld) {
+  // Change quantity if needed
   await this.page.fill('[name="quantity"]', '2');
   
-  // Capturar antes de agregar
-  await this.captureScreenshot('Producto con cantidad definida');
+  // Capture before adding
+  await this.captureScreenshot('Product with defined quantity');
   
-  // Hacer clic en agregar al carrito
-  await this.page.click('button:has-text("Agregar al carrito")');
+  // Click add to cart
+  await this.page.click('button:has-text("Add to cart")');
   
-  // Esperar notificación de éxito
+  // Wait for success notification
   await this.page.waitForSelector('.notification-success', { timeout: 5000 });
   
-  // Capturar después de agregar
-  await this.captureScreenshot('Notificación de producto agregado');
+  // Capture after adding
+  await this.captureScreenshot('Product added notification');
 });
 
 // ============================================
-// EJEMPLO 3: Verificación con múltiples screenshots
+// EXAMPLE 3: Verification with multiple screenshots
 // ============================================
 
-Then('el carrito contiene los productos correctos', async function (this: CustomWorld) {
-  // Navegar al carrito
-  await this.page.click('a:has-text("Carrito")');
+Then('the cart contains the correct products', async function (this: CustomWorld) {
+  // Navigate to the cart
+  await this.page.click('a:has-text("Cart")');
   
-  // Esperar a que cargue el carrito
+  // Wait for the cart to load
   await this.page.waitForSelector('.cart-items');
   
-  // Capturar screenshot del carrito completo
-  await this.captureScreenshot('Carrito con productos');
+  // Capture screenshot of the full cart
+  await this.captureScreenshot('Cart with products');
   
-  // Obtener cantidad de items
+  // Get number of items
   const itemCount = await this.page.locator('.cart-item').count();
   
-  // Capturar screenshot mostrando cantidad
-  await this.captureScreenshot(`Carrito con ${itemCount} items`);
+  // Capture screenshot showing item count
+  await this.captureScreenshot(`Cart with ${itemCount} items`);
   
-  // Verificaciones
+  // Verifications
   expect(itemCount).to.be.greaterThan(0);
 });
 
 // ============================================
-// EJEMPLO 4: Checkout
+// EXAMPLE 4: Checkout
 // ============================================
 
-When('el usuario procede al checkout', async function (this: CustomWorld) {
-  // Capturar antes de checkout
-  await this.captureScreenshot('Carrito antes de checkout');
+When('the user proceeds to checkout', async function (this: CustomWorld) {
+  // Capture before checkout
+  await this.captureScreenshot('Cart before checkout');
   
-  // Hacer clic en checkout
-  await this.page.click('button:has-text("Proceder al pago")');
+  // Click checkout
+  await this.page.click('button:has-text("Proceed to payment")');
   
-  // Esperar a que cargue la página de checkout
+  // Wait for the checkout page to load
   await this.page.waitForSelector('.checkout-form');
   
-  // Capturar página de checkout
-  await this.captureScreenshot('Página de checkout');
+  // Capture checkout page
+  await this.captureScreenshot('Checkout page');
 });
 
-When('el usuario completa los datos de envío', async function (this: CustomWorld) {
-  // Llenar formulario de envío
-  await this.page.fill('[name="street"]', 'Calle Principal 123');
+When('the user completes shipping details', async function (this: CustomWorld) {
+  // Fill shipping form
+  await this.page.fill('[name="street"]', '123 Main St');
   await this.page.fill('[name="city"]', 'Madrid');
   await this.page.fill('[name="zip"]', '28001');
   
-  // Capturar formulario completo
-  await this.captureScreenshot('Datos de envío completados');
+  // Capture completed form
+  await this.captureScreenshot('Completed shipping details');
 });
 
-When('el usuario selecciona el método de pago', async function (this: CustomWorld) {
-  // Seleccionar método de pago
+When('the user selects the payment method', async function (this: CustomWorld) {
+  // Select payment method
   await this.page.click('input[value="credit-card"]');
   
-  // Llenar datos de tarjeta
+  // Fill card details
   await this.page.fill('[name="card-number"]', '4111111111111111');
   await this.page.fill('[name="expiry"]', '12/25');
   await this.page.fill('[name="cvv"]', '123');
   
-  // Capturar método de pago seleccionado
-  await this.captureScreenshot('Método de pago configurado');
+  // Capture selected payment method
+  await this.captureScreenshot('Selected payment method');
 });
 
-Then('el usuario debería ver la confirmación de compra', async function (this: CustomWorld) {
-  // Capturar antes de confirmar
-  await this.captureScreenshot('Resumen de compra final');
+Then('the user should see the purchase confirmation', async function (this: CustomWorld) {
+  // Capture before confirming
+  await this.captureScreenshot('Final purchase summary');
   
-  // Hacer clic en confirmar
-  await this.page.click('button:has-text("Confirmar compra")');
+  // Click confirm
+  await this.page.click('button:has-text("Confirm purchase")');
   
-  // Esperar a la página de confirmación
+  // Wait for confirmation page
   await this.page.waitForSelector('.confirmation-message', { timeout: 10000 });
   
-  // Capturar confirmación
-  await this.captureScreenshot('Compra confirmada exitosamente');
+  // Capture confirmation
+  await this.captureScreenshot('Purchase confirmed successfully');
   
-  // Verificar mensaje
+  // Verify message
   const message = await this.page.textContent('.confirmation-message');
-  expect(message).to.include('¡Gracias por tu compra!');
+  expect(message).to.include('Thank you for your purchase!');
 });
 
 // ============================================
-// EJEMPLO 5: Manejo de errores con screenshots
+// EXAMPLE 5: Error handling with screenshots
 // ============================================
 
-When('el usuario intenta completar una acción inválida', async function (this: CustomWorld) {
+When('the user tries to complete an invalid action', async function (this: CustomWorld) {
   try {
-    // Intentar una acción que podría fallar
+    // Attempt an action that may fail
     await this.page.click('button[disabled]', { force: true });
     
-    // Si llegamos aquí, capturar el estado
-    await this.captureScreenshot('Estado después de acción forzada');
+    // If we get here, capture the state
+    await this.captureScreenshot('State after forced action');
   } catch (error) {
-    // Capturar screenshot del error
-    await this.captureErrorScreenshot('Intento de acción inválida');
+    // Capture screenshot of the error
+    await this.captureErrorScreenshot('Invalid action attempt');
     
-    // Re-lanzar el error para que falle el scenario
+    // Re-throw the error so the scenario fails
     throw error;
   }
 });
 
 // ============================================
-// TIPS IMPORTANTES:
+// IMPORTANT TIPS:
 // ============================================
 /*
- * 1. NOMBRES DESCRIPTIVOS:
- *    - Usa nombres que describan claramente qué se está capturando
- *    - Los espacios se convierten automáticamente a guiones bajos
+ * 1. DESCRIPTIVE NAMES:
+ *    - Use names that clearly describe what is being captured
+ *    - Spaces are automatically converted to underscores
  * 
- * 2. PUNTO ESTRATÉGICO:
- *    - Captura después de navegaciones completadas
- *    - Captura antes de verificaciones importantes
- *    - Captura después de llenar formularios
+ * 2. STRATEGIC POINTS:
+ *    - Capture after completed navigations
+ *    - Capture before important assertions
+ *    - Capture after filling forms
  * 
- * 3. ERRORES:
- *    - Los errores se capturan automáticamente en hooks
- *    - Pero puedes capturar manualmente también
+ * 3. ERRORS:
+ *    - Errors are automatically captured in hooks
+ *    - But you can capture manually too
  * 
- * 4. RENDIMIENTO:
- *    - Demasiadas screenshots ralentizan las pruebas
- *    - Usa solo en puntos críticos
- *    - El tamaño de las screenshots es de página completa
+ * 4. PERFORMANCE:
+ *    - Too many screenshots slow down tests
+ *    - Use only at critical points
+ *    - Screenshot size is full page
  * 
- * 5. REPORTES:
- *    - Todas las screenshots se agrupan en el reporte HTML
- *    - Se generan con timestamp para evitar duplicados
- *    - Se organiza por feature y scenario automáticamente
+ * 5. REPORTS:
+ *    - All screenshots are grouped in the HTML report
+ *    - They are generated with a timestamp to avoid duplicates
+ *    - They are organized by feature and scenario automatically
  * 
  * 6. WAITS:
- *    - Siempre espera a que el elemento esté visible antes de capturar
- *    - Usa waitForSelector() para elementos dinámicos
- *    - Usa waitForNavigation() después de hacer clic en links
+ *    - Always wait for the element to be visible before capturing
+ *    - Use waitForSelector() for dynamic elements
+ *    - Use waitForNavigation() after clicking links
  */

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Script para ejecutar pruebas, generar reporte y abrirlo automáticamente
+ * Script to run tests, generate the report, and open it automatically
  */
 
 import { execSync } from 'child_process';
@@ -15,35 +15,35 @@ const __dirname = path.dirname(__filename);
 
 async function runTestsAndOpenReport() {
   try {
-    console.log('\n🧪 Ejecutando pruebas...\n');
+    console.log('\n🧪 Running tests...\n');
     
-    // Ejecutar pruebas
+    // Run tests
     execSync('npm test', { stdio: 'inherit', cwd: process.cwd() });
     
-    console.log('\n📊 Generando reporte HTML...\n');
+    console.log('\n📊 Generating HTML report...\n');
     
-    // Generar reporte HTML
+    // Generate HTML report
     execSync('node scripts/generateHtmlReport.js', { stdio: 'inherit', cwd: process.cwd() });
     
-    // Ruta del reporte
+    // Report path
     const reportPath = path.join(process.cwd(), 'reports', 'cucumber-report-with-snapshots.html');
     
-    // Verificar que el reporte existe
+    // Verify the report exists
     if (fs.existsSync(reportPath)) {
-      console.log(`\n✅ Reporte generado: ${reportPath}`);
-      console.log('\n🌐 Abriendo reporte en navegador...\n');
+      console.log(`\n✅ Report generated: ${reportPath}`);
+      console.log('\n🌐 Opening report in browser...\n');
       
-      // Abrir en navegador con file:// URL
+      // Open in browser with file:// URL
       const fileUrl = `file://${path.resolve(reportPath).replace(/\\/g, '/')}`;
       await open(fileUrl);
       
-      console.log('✨ ¡Reporte abierto exitosamente!');
+      console.log('✨ Report opened successfully!');
     } else {
-      console.error('❌ Error: No se pudo generar el reporte');
+      console.error('❌ Error: Report could not be generated');
       process.exit(1);
     }
   } catch (error) {
-    console.error('❌ Error durante la ejecución:', error.message);
+    console.error('❌ Error during execution:', error.message);
     process.exit(1);
   }
 }

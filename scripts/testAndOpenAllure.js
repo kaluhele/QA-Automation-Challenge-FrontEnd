@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Script para ejecutar pruebas, generar reporte Allure y abrirlo automáticamente
+ * Script to run tests, generate Allure report, and open it automatically
  */
 
 import { execSync } from 'child_process';
@@ -18,39 +18,39 @@ async function runTestsAndOpenAllure() {
     const reportsDir = path.join(process.cwd(), 'reports');
     const allureResultsDir = path.join(reportsDir, 'allure-results');
     
-    // Crear directorio de resultados de Allure si no existe
+    // Create Allure results directory if it does not exist
     if (!fs.existsSync(allureResultsDir)) {
       fs.mkdirSync(allureResultsDir, { recursive: true });
     }
 
-    console.log('\n🧪 Ejecutando pruebas...\n');
+    console.log('\n🧪 Running tests...\n');
     
     try {
-      // Ejecutar pruebas
+      // Run tests
       execSync('npm test', { stdio: 'inherit', cwd: process.cwd() });
     } catch (error) {
-      console.log('\n⚠️ Algunas pruebas fallaron, pero continuaremos generando el reporte...\n');
+      console.log('\n⚠️ Some tests failed, but we will continue generating the report...\n');
     }
     
-    console.log('\n📊 Generando reporte Allure...\n');
+    console.log('\n📊 Generating Allure report...\n');
     
-    // Convertir resultados de Cucumber a formato Allure
+    // Convert Cucumber results to Allure format
     execSync('node scripts/convertToAllure.js', { stdio: 'inherit', cwd: process.cwd() });
     
-    // Generar reporte Allure
+    // Generate Allure report
     execSync('npm run generate:allure', { stdio: 'inherit', cwd: process.cwd() });
     
-    // Abrir Allure con el servidor integrado
-    console.log('\n🌐 Abriendo reporte Allure en navegador...\n');
+    // Open Allure with the integrated server
+    console.log('\n🌐 Opening Allure report in browser...\n');
     
     try {
       execSync('allure open ./reports/allure-report', { stdio: 'inherit', cwd: process.cwd() });
     } catch (error) {
-      console.error('❌ Error al abrir Allure:', error.message);
+      console.error('❌ Error opening Allure:', error.message);
       process.exit(1);
     }
   } catch (error) {
-    console.error('❌ Error durante la ejecución:', error.message);
+    console.error('❌ Error during execution:', error.message);
     process.exit(1);
   }
 }

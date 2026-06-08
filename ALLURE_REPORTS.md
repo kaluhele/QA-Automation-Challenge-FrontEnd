@@ -1,103 +1,103 @@
-# 📊 Allure Reports - Guía Completa
+#  Allure Reports - Complete Guide
 
-Allure es un framework de reportes moderno y gráfico que proporciona visualizaciones detalladas de tus tests con soporte para screenshots, videos, timeline, y mucho más.
+Allure is a modern, graphical reporting framework that provides detailed test visualizations with support for screenshots, videos, timelines, and much more.
 
 ---
 
-## 🚀 Inicio Rápido
+##  Quick Start
 
-### ⭐ Ejecutar Tests y Abrir Reporte Allure
+###  Run Tests and Open Allure Report
 
 ```bash
 npm run test:allure:open
 ```
 
-Este comando:
-1. ✅ Ejecuta todas las pruebas
-2. ✅ Captura screenshots automáticamente
-3. ✅ Genera reporte Allure con datos gráficos
-4. ✅ Abre automáticamente en tu navegador
+This command:
+1. ✅ Runs all tests
+2. ✅ Captures screenshots automatically
+3. ✅ Generates an Allure report with graphical data
+4. ✅ Opens it automatically in your browser
 
 ---
 
-## 📁 Estructura de Reportes
+##  Report Structure
 
 ```
 reports/
-├── allure-report/              # Reporte gráfico de Allure ⭐
-├── allure-results/             # Datos JSON para Allure
-├── cucumber-report.json        # Datos de Cucumber
-├── cucumber-report.html        # Reporte HTML simple
-└── screenshots/                # Screenshots capturadas
+├── allure-report/              # Allure graphical report ⭐
+├── allure-results/             # JSON data for Allure
+├── cucumber-report.json        # Cucumber data
+├── cucumber-report.html        # Simple HTML report
+└── screenshots/                # Captured screenshots
 ```
 
 ---
 
-## 🎯 Características de Allure
+##  Allure Features
 
-### 1. **Dashboard Principal**
-- 📊 Gráficos circulares con estadísticas
-- ⏱️ Duración de tests
-- 📈 Historial de ejecuciones
-- 🎯 Tasa de éxito
+### 1. **Main Dashboard**
+-  Pie charts with statistics
+-  Test durations
+-  Execution history
+-  Success rate
 
-### 2. **Detalles por Scenario**
-- 📝 Pasos ejecutados con timeline
-- 🖼️ Screenshots integradas
-- ⚠️ Stack traces de errores
-- 📌 Etiquetas y categorías
+### 2. **Scenario Details**
+-  Executed steps with timeline
+-  Embedded screenshots
+-  Error stack traces
+-  Tags and categories
 
-### 3. **Visualizaciones**
-- 🔄 Timeline de ejecución
-- 📊 Distribución de estados
-- 📈 Gráficos de duración
-- 🎭 Categorías de tests
+### 3. **Visualizations**
+-  Execution timeline
+-  Status distribution
+-  Duration charts
+-  Test categories
 
 ---
 
-## 📸 Usar Snapshots con Allure
+##  Use Snapshots with Allure
 
-### Captura Automática en Fallos
+### Automatic capture on failures
 
-Las screenshots se capturan automáticamente en tus tests fallidos:
+Screenshots are automatically captured in your failing tests:
 
 ```typescript
 import { Given, When, Then } from '@cucumber/cucumber';
 import { CustomWorld } from '../support/world';
 
-Then('verifico el resultado', async function (this: CustomWorld) {
-  // Si esto falla, se captura screenshot automáticamente
+Then('I verify the result', async function (this: CustomWorld) {
+  // If this fails, the screenshot is captured automatically
   const text = await this.page.textContent('.result');
   expect(text).to.equal('Success');
 });
 ```
 
-### Captura Manual
+### Manual Capture
 
-Captura screenshots en puntos específicos:
+Capture screenshots at specific points:
 
 ```typescript
-When('el usuario completa el formulario', async function (this: CustomWorld) {
+When('the user completes the form', async function (this: CustomWorld) {
   await this.page.fill('[name="email"]', 'user@example.com');
   await this.page.fill('[name="password"]', 'pass123');
   
-  // Capturar screenshot - aparecerá en Allure
-  await this.captureScreenshot('Formulario completado');
+  // Capture screenshot - it will appear in Allure
+  await this.captureScreenshot('Form completed');
   
   await this.page.click('button[type="submit"]');
 });
 ```
 
-### Captura de Error Manual
+### Manual Error Capture
 
 ```typescript
-Then('verifico datos críticos', async function (this: CustomWorld) {
+Then('I verify critical data', async function (this: CustomWorld) {
   try {
     const balance = await this.page.textContent('.balance');
     expect(balance).to.include('$1000');
   } catch (error) {
-    // Capturar error para evidencia
-    await this.captureErrorScreenshot('Verificación de balance fallida');
+    // Capture error for evidence
+    await this.captureErrorScreenshot('Balance verification failed');
     throw error;
   }
 });
@@ -105,109 +105,109 @@ Then('verifico datos críticos', async function (this: CustomWorld) {
 
 ---
 
-## 🖼️ Las Screenshots en Allure
+##  Screenshots in Allure
 
-Cuando ejecutas `npm run test:allure:open`, las screenshots aparecen:
+When you run `npm run test:allure:open`, screenshots appear:
 
-### En Fallos
-- Automáticamente se captura la pantalla en el momento del fallo
-- Se adjunta como evidencia visual al reporte
+### On failures
+- A screenshot is captured automatically at the moment of failure
+- It is attached as visual evidence to the report
 
-### En Steps Manuales
-- Cualquier `captureScreenshot()` aparece en Allure
-- Se muestra bajo el step que la capturó
+### In manual steps
+- Any `captureScreenshot()` appears in Allure
+- It shows under the step that captured it
 
-### Visualización
-- Haz clic en cualquier screenshot para ampliarla
-- Ver en zoom completo
-- Comparar múltiples screenshots
+### Viewing
+- Click any screenshot to enlarge
+- View in full zoom
+- Compare multiple screenshots
 
 ---
 
-## 📊 Scripts Disponibles
+##  Available Scripts
 
 ```bash
-# ⭐ RECOMENDADO: Ejecutar tests y abrir Allure automáticamente
+#  RECOMMENDED: Run tests and open Allure automatically
 npm run test:allure:open
 
-# Ejecutar tests y generar reporte Allure (sin abrir)
+# Run tests and generate Allure report (without opening)
 npm run test:allure
 
-# Solo abrir reporte Allure existente
+# Open an existing Allure report
 npm run open:allure
 
-# Generar reporte Allure (sin ejecutar tests)
+# Generate Allure report (without running tests)
 npm run generate:allure
 
-# Ejecutar tests solo (sin generar reporte)
+# Run tests only (without generating report)
 npm test
 
-# Generar reporte HTML simple (sin Allure)
+# Generate simple HTML report (without Allure)
 npm run test:report:open
 ```
 
 ---
 
-## 🎨 Estructura de un Reporte Allure
+##  Structure of an Allure Report
 
 ### Header
-- Título y tiempo total
-- Botones de navegación
-- Versión del reporte
+- Title and total time
+- Navigation buttons
+- Report version
 
 ### Sidebar
-- **Suites**: Organización de features
-- **Tests**: Listado completo de scenarios
-- **Graphs**: Visualizaciones
-- **Timeline**: Orden de ejecución
-- **Categories**: Categorización de fallos
+- **Suites**: Organization of features
+- **Tests**: Full list of scenarios
+- **Graphs**: Visualizations
+- **Timeline**: Execution order
+- **Categories**: Failure categorization
 
 ### Content
-- Estado del test (✅ Passed, ❌ Failed, ⏭️ Skipped)
-- Steps con duración individual
-- Screenshots adjuntas
-- Historial de ejecuciones
+- Test status (✅ Passed, ❌ Failed, ⏭️ Skipped)
+- Steps with individual duration
+- Attached screenshots
+- Execution history
 
 ---
 
-## 📋 Mejor Prácticas con Allure
+##  Best Practices with Allure
 
-### 1. Captura Estratégica
+### 1. Strategic Capture
 ```typescript
-// ✅ BIEN: Capturar en puntos clave
-When('el usuario se autentica', async function (this: CustomWorld) {
+// ✅ GOOD: Capture at key points
+When('the user authenticates', async function (this: CustomWorld) {
   await this.page.fill('[name="username"]', 'testuser');
   await this.page.fill('[name="password"]', 'password');
-  await this.captureScreenshot('Login form filled');  // Antes de enviar
+  await this.captureScreenshot('Login form filled');  // Before submitting
   
   await this.page.click('button[type="submit"]');
   await this.page.waitForNavigation();
-  await this.captureScreenshot('Logged in successfully');  // Después
+  await this.captureScreenshot('Logged in successfully');  // After
 });
 ```
 
-### 2. Nombres Descriptivos
+### 2. Descriptive Names
 ```typescript
-// ✅ BIEN
+// ✅ GOOD
 await this.captureScreenshot('Shopping cart with 3 items');
 
-// ❌ EVITAR
+// ❌ AVOID
 await this.captureScreenshot('Screenshot 1');
 ```
 
-### 3. Fallos Capturados
+### 3. Captured Failures
 ```typescript
-// Las screenshots de error se capturan automáticamente
-Then('verifico el total', async function (this: CustomWorld) {
+// Error screenshots are captured automatically
+Then('I verify the total', async function (this: CustomWorld) {
   const total = await this.page.textContent('.total-price');
-  // Si falla, Allure captura automáticamente la screenshot
+  // If this fails, Allure captures the screenshot automatically
   expect(total).to.include('$99.99');
 });
 ```
 
 ---
 
-## 🔧 Integración Continua
+##  Continuous Integration
 
 ### GitHub Actions
 ```yaml
@@ -224,61 +224,61 @@ Then('verifico el total', async function (this: CustomWorld) {
 
 ---
 
-## 📱 Características Avanzadas
+##  Advanced Features
 
-### Filtrado
-- Filtrar por estado (Passed, Failed, Skipped)
-- Filtrar por duración
-- Filtrar por feature/etiqueta
+### Filtering
+- Filter by status (Passed, Failed, Skipped)
+- Filter by duration
+- Filter by feature/tag
 
-### Búsqueda
-- Buscar por nombre de test
-- Buscar por mensaje de error
-- Búsqueda global
+### Search
+- Search by test name
+- Search by error message
+- Global search
 
-### Historial
-- Ver ejecuciones anteriores
-- Comparar resultados
-- Tendencias de test
+### History
+- View previous runs
+- Compare results
+- Trend analysis
 
-### Exportar
-- Descargar reportes
-- Compartir via URL
-- Integración con ReportPortal
-
----
-
-## 🐛 Troubleshooting
-
-### Las screenshots no aparecen en Allure
-
-1. Verifica que `captureScreenshot()` se está llamando
-2. Revisa la carpeta `reports/screenshots/`
-3. Regenera el reporte: `npm run test:allure:open`
-
-### Allure no se genera
-
-1. Instala dependencias: `npm install`
-2. Limpia reportes: `rm -rf reports/allure-results`
-3. Ejecuta: `npm run test:allure:open`
-
-### Error al abrir reporte
-
-1. Verifica que Node.js 14+ está instalado
-2. Instala Allure: `npm install --save-dev allure-commandline`
-3. Usa: `npm run open:allure`
+### Export
+- Download reports
+- Share via URL
+- Integrate with ReportPortal
 
 ---
 
-## 📚 Recursos
+##  Troubleshooting
 
-- [Documentación Allure](https://docs.qameta.io/allure/)
-- [GitHub Allure](https://github.com/allure-framework)
+### Screenshots do not appear in Allure
+
+1. Verify `captureScreenshot()` is being called
+2. Check the `reports/screenshots/` folder
+3. Regenerate the report: `npm run test:allure:open`
+
+### Allure does not generate
+
+1. Install dependencies: `npm install`
+2. Clean reports: `rm -rf reports/allure-results`
+3. Run: `npm run test:allure:open`
+
+### Error opening report
+
+1. Verify Node.js 14+ is installed
+2. Install Allure: `npm install --save-dev allure-commandline`
+3. Use: `npm run open:allure`
+
+---
+
+##  Resources
+
+- [Allure documentation](https://docs.qameta.io/allure/)
+- [Allure on GitHub](https://github.com/allure-framework)
 - [Cucumber Allure Adapter](https://github.com/allure-framework/allure-js)
 
 ---
 
-## 📝 Ejemplo Completo
+##  Complete Example
 
 ```typescript
 import { Given, When, Then } from '@cucumber/cucumber';
@@ -288,37 +288,37 @@ import { expect } from 'chai';
 // Feature: Shopping Cart
 // Scenario: Add multiple products to cart
 
-Given('el usuario está en la tienda', async function (this: CustomWorld) {
+Given('the user is on the shop page', async function (this: CustomWorld) {
   await this.page.goto('https://shop.example.com');
-  await this.captureScreenshot('Tienda cargada');
+  await this.captureScreenshot('Shop loaded');
 });
 
-When('agrega {int} productos al carrito', async function (this: CustomWorld, quantity: number) {
+When('the user adds {int} products to the cart', async function (this: CustomWorld, quantity: number) {
   for (let i = 0; i < quantity; i++) {
     await this.page.click('.add-to-cart');
-    await this.captureScreenshot(`Producto ${i + 1} agregado`);
+    await this.captureScreenshot(`Product ${i + 1} added`);
   }
 });
 
-Then('el carrito muestra {int} productos', async function (this: CustomWorld, expected: number) {
-  await this.captureScreenshot('Carrito antes de verificación');
+Then('the cart shows {int} products', async function (this: CustomWorld, expected: number) {
+  await this.captureScreenshot('Cart before verification');
   
   const count = await this.page.locator('.cart-item').count();
   expect(count).to.equal(expected);
   
-  await this.captureScreenshot('Verificación completada');
+  await this.captureScreenshot('Verification completed');
 });
 ```
 
-**Resultado en Allure:**
+**Result in Allure:**
 - ✅ Scenario: Add multiple products to cart
-- 📸 Screenshot: Tienda cargada
-- 📸 Screenshot: Producto 1 agregado
-- 📸 Screenshot: Producto 2 agregado
-- 📸 Screenshot: Carrito antes de verificación
-- ✅ Paso: el carrito muestra 2 productos
-- 📸 Screenshot: Verificación completada
+- 📸 Screenshot: Shop loaded
+- 📸 Screenshot: Product 1 added
+- 📸 Screenshot: Product 2 added
+- 📸 Screenshot: Cart before verification
+- ✅ Step: the cart shows 2 products
+- 📸 Screenshot: Verification completed
 
 ---
 
-¡Disfruta de tus reportes gráficos con Allure! 🎉✨
+Enjoy your graphical Allure reports! 🎉✨
