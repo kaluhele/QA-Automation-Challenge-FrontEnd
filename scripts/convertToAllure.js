@@ -97,7 +97,17 @@ try {
         ],
         parameters: [],
         links: [],
-        attachments: addScreenshotAttachments(screenshots),
+        attachments: addScreenshotAttachments(
+          screenshots.filter(file => {
+            const normalizedFile = file
+              .replace(/^ERROR_/, '')
+              .replace('.png', '');
+
+            const scenarioName = scenario.name.replace(/\s+/g, '_');
+
+            return normalizedFile === scenarioName;
+          })
+        ),
         shouldDisplayMessage: false,
         hasContent: true
       };

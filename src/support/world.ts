@@ -14,54 +14,44 @@ class CustomWorld extends World {
 
   constructor(options: IWorldOptions) {
     super(options);
-    // Create screenshots directory if it does not exist
+
     if (!fs.existsSync(this.screenshotsPath)) {
       fs.mkdirSync(this.screenshotsPath, { recursive: true });
     }
   }
 
-  /**
-   * Capture a screenshot and attach it to the report
-   */
   async captureScreenshot(name: string): Promise<void> {
     if (this.page) {
-      const timestamp = new Date().getTime();
-      const filename = `${name.replace(/\s+/g, '_')}_${timestamp}.png`;
+      const filename = `${name.replace(/\s+/g, '_')}.png`;
       const filepath = path.join(this.screenshotsPath, filename);
-      
+
       const buffer = await this.page.screenshot({ fullPage: true });
       await fs.promises.writeFile(filepath, buffer);
-      
-      // Add screenshot to Allure
+
       try {
         allure.addAttachment(name, buffer, 'image/png');
       } catch (e) {
-        // Allure is not available, continue
+        // Allure not available
       }
-      
+
       console.log(`Screenshot captured: ${filename}`);
     }
   }
 
-  /**
-   * Capture a screenshot on error
-   */
-  async captureErrorScreenshot(stepName: string): Promise<void> {
+  async captureErrorScreenshot(name: string): Promise<void> {
     if (this.page) {
-      const timestamp = new Date().getTime();
-      const filename = `ERROR_${stepName.replace(/\s+/g, '_')}_${timestamp}.png`;
+      const filename = `ERROR_${name.replace(/\s+/g, '_')}.png`;
       const filepath = path.join(this.screenshotsPath, filename);
-      
+
       const buffer = await this.page.screenshot({ fullPage: true });
       await fs.promises.writeFile(filepath, buffer);
-      
-      // Add screenshot to Allure as failure evidence
+
       try {
-        allure.addAttachment(`ERROR: ${stepName}`, buffer, 'image/png');
+        allure.addAttachment(`ERROR: ${name}`, buffer, 'image/png');
       } catch (e) {
-        // Allure is not available, continue
+        // Allure not available
       }
-      
+
       console.log(`Error screenshot captured: ${filename}`);
     }
   }

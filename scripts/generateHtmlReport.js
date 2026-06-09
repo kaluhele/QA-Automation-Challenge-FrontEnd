@@ -458,28 +458,44 @@ function generateHtmlReport() {
           });
         }
 
-        // Add screenshots if they exist
-        if (screenshots.length > 0) {
-          html += `
-                        <div class="screenshots-section">
-                            <div class="screenshots-title">📸 Screenshots</div>
-                            <div class="screenshot-grid">
-          `;
-          
-          screenshots.forEach((screenshot) => {
-            const relativePath = `screenshots/${screenshot}`;
-            html += `
-                                <div class="screenshot-item">
-                                    <div class="screenshot-label">${screenshot}</div>
-                                    <img src="${relativePath}" alt="Screenshot" class="screenshot-img" onclick="openModal('${relativePath}')">
-                                </div>
-            `;
-          });
+// Add only screenshots belonging to the current scenario
+        const scenarioName = scenario.name.replace(/\s+/g, '_');
 
-          html += `
-                            </div>
-                        </div>
-          `;
+        console.log('Scenario:', scenarioName);
+        console.log('Available screenshots:', screenshots);
+
+        const scenarioScreenshots = screenshots.filter((file) => {
+        const normalizedFile = file
+            .replace(/^ERROR_/, '')
+            .replace('.png', '');
+
+        return normalizedFile === scenarioName;
+        });
+
+        console.log('Matches:', scenarioScreenshots);
+
+        if (scenarioScreenshots.length > 0) {
+        html += `
+                                <div class="screenshots-section">
+                                    <div class="screenshots-title">📸 Screenshots</div>
+                                    <div class="screenshot-grid">
+                `;
+
+        scenarioScreenshots.forEach((screenshot) => {
+            const relativePath = `screenshots/${screenshot}`;
+
+            html += `
+                                        <div class="screenshot-item">
+                                            <div class="screenshot-label">${screenshot}</div>
+                                            <img src="${relativePath}" alt="Screenshot" class="screenshot-img" onclick="openModal('${relativePath}')">
+                                        </div>
+                    `;
+        });
+
+        html += `
+                                    </div>
+                                </div>
+                `;
         }
 
         html += '</div>';
