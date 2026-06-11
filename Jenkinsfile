@@ -13,6 +13,12 @@ pipeline {
             }
         }
 
+        stage('Clean Reports') {
+            steps {
+                sh 'rm -rf reports/allure-results reports/allure-report reports/screenshots'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
