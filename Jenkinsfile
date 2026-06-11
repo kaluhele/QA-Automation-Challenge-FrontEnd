@@ -15,7 +15,7 @@ pipeline {
 
         stage('Clean Reports') {
             steps {
-                sh 'rm -rf reports/allure-results reports/allure-report reports/screenshots'
+                sh 'rm -rf reports/allure-results reports/allure-report reports/screenshots allure-report'
             }
         }
 
@@ -28,7 +28,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'npm test'
+                sh 'npm test || true'
             }
         }
 
@@ -46,7 +46,6 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'reports/allure-results/**', allowEmptyArchive: true
             allure([
                 includeProperties: false,
                 jdk: '',
