@@ -4,7 +4,7 @@
   "description": "QA Automation Challenge – FrontEnd",
   "main": "index.js",
   "scripts": {
-    "test": "node --loader ts-node/esm ./node_modules/@cucumber/cucumber/bin/cucumber-js --import src/steps/**/*.ts --import src/support/**/*.ts --format json:./reports/cucumber-report.json --format html:./reports/cucumber-report.html src/features/**/*.feature",
+    "test": "node --loader ts-node/esm ./node_modules/@cucumber/cucumber/bin/cucumber-js --import src/steps/**/*.ts --import src/support/**/*.ts --format json:./reports/cucumber-report.json --format html:./reports/cucumber-report.html --format allure-cucumberjs/reporter:./reports/allure-results src/features/**/*.feature",
     "test:report": "npm test && npm run generate:html-report",
     "test:report:open": "node scripts/testAndOpenReport.js",
     "test:allure": "npm test && npm run generate:allure:report",

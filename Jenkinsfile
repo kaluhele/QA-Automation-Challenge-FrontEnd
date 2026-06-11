@@ -32,7 +32,7 @@ pipeline {
                     includeProperties: false,
                     jdk: '',
                     commandline: 'allure',
-                    results: [[path: 'allure-results']]
+                    results: [[path: 'reports/allure-results']]
                 ])
             }
         }
@@ -40,12 +40,12 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'allure-results/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'reports/allure-results/**', allowEmptyArchive: true
             allure([
                 includeProperties: false,
                 jdk: '',
                 commandline: 'allure',
-                results: [[path: 'allure-results']]
+                results: [[path: 'reports/allure-results']]
             ])
         }
         failure {
