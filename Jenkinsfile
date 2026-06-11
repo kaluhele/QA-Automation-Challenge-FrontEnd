@@ -16,7 +16,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
-                sh 'npx playwright install --with-deps'
+                sh 'npx playwright install chromium'
             }
         }
 
@@ -31,6 +31,7 @@ pipeline {
                 allure([
                     includeProperties: false,
                     jdk: '',
+                    commandline: 'allure',
                     results: [[path: 'allure-results']]
                 ])
             }
@@ -43,14 +44,15 @@ pipeline {
             allure([
                 includeProperties: false,
                 jdk: '',
+                commandline: 'allure',
                 results: [[path: 'allure-results']]
             ])
         }
         failure {
-            echo '❌ Pipeline failed — see report'
+            echo '❌ Pipeline falló — revisar reporte'
         }
         success {
-            echo '✅ All tests passed'
+            echo '✅ Todos los tests pasaron'
         }
     }
 }
