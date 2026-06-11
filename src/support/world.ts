@@ -1,14 +1,12 @@
 import { setWorldConstructor, IWorldOptions, World } from '@cucumber/cucumber';
-import { Browser, Page } from 'playwright';
+import { Browser, BrowserContext, Page } from 'playwright';
+import { allure } from 'allure-playwright';
 import path from 'path';
 import fs from 'fs';
 
-let allure: any = {
-  addAttachment: () => {}
-};
-
 class CustomWorld extends World {
   browser!: Browser;
+  context!: BrowserContext;
   page!: Page;
   screenshotsPath: string = 'reports/screenshots';
 
@@ -29,9 +27,9 @@ class CustomWorld extends World {
       await fs.promises.writeFile(filepath, buffer);
 
       try {
-        allure.addAttachment(name, buffer, 'image/png');
+        allure.attachment(name, buffer, 'image/png');
       } catch (e) {
-        // Allure not available
+        console.log('Allure attachment failed:', e);
       }
 
       console.log(`Screenshot captured: ${filename}`);
@@ -47,9 +45,9 @@ class CustomWorld extends World {
       await fs.promises.writeFile(filepath, buffer);
 
       try {
-        allure.addAttachment(`ERROR: ${name}`, buffer, 'image/png');
+        allure.attachment(`ERROR: ${name}`, buffer, 'image/png');
       } catch (e) {
-        // Allure not available
+        console.log('Allure attachment failed:', e);
       }
 
       console.log(`Error screenshot captured: ${filename}`);
