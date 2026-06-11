@@ -5,12 +5,12 @@ Feature: Login in Sauce Demo
     When they enter credentials "VALID_USERNAME" and "VALID_PASSWORD"
     Then they should see the products page
 
-  Scenario: Invalid user does not log in properly
+  Scenario: Locked out user does not log in properly
     Given the user navigates to the login page
     When they enter credentials "LOCKED_USERNAME" and "LOCKED_PASSWORD"
     Then they should see an error message
 
-  Scenario: Locked out user cannot log in
+  Scenario: Invalid user does not log in properly
     Given the user navigates to the login page
     When they enter credentials "INVALID_USERNAME" and "INVALID_PASSWORD"
     Then they should see an error message

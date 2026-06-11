@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 786500400
+              "duration": 449811700
             }
           },
           {
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1534075200
+              "duration": 1099705799
             }
           },
           {
@@ -40,7 +40,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 120514400
+              "duration": 158068899
             }
           },
           {
@@ -53,7 +53,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 53233000
+              "duration": 45139900
             }
           },
           {
@@ -61,7 +61,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 619300299
+              "duration": 621446399
             }
           }
         ],
@@ -91,7 +91,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 624105100
+              "duration": 458719700
             }
           },
           {
@@ -104,7 +104,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 858547799
+              "duration": 1061153700
             }
           },
           {
@@ -117,7 +117,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 184597200
+              "duration": 148537500
             }
           },
           {
@@ -130,7 +130,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 224383600
+              "duration": 184931700
             }
           },
           {
@@ -143,7 +143,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 10321400
+              "duration": 6779999
             }
           },
           {
@@ -151,7 +151,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 554308799
+              "duration": 467195900
             }
           }
         ],
@@ -181,7 +181,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 602875200
+              "duration": 472901600
             }
           },
           {
@@ -194,7 +194,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 611265900
+              "duration": 897873999
             }
           },
           {
@@ -207,7 +207,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 200773100
+              "duration": 158146099
             }
           },
           {
@@ -220,7 +220,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 569700
+              "duration": 665399
             }
           },
           {
@@ -228,7 +228,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 809544799
+              "duration": 605517799
             }
           }
         ],
@@ -237,17 +237,17 @@
       },
       {
         "description": "",
-        "id": "login-in-sauce-demo;invalid-user-does-not-log-in-properly",
+        "id": "login-in-sauce-demo;locked-out-user-does-not-log-in-properly",
         "keyword": "Scenario",
         "line": 8,
-        "name": "Invalid user does not log in properly",
+        "name": "Locked out user does not log in properly",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 680414100
+              "duration": 445209799
             }
           },
           {
@@ -260,7 +260,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 764602999
+              "duration": 1055726399
             }
           },
           {
@@ -273,7 +273,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 144884000
+              "duration": 125386099
             }
           },
           {
@@ -286,7 +286,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 7832200
+              "duration": 9311700
             }
           },
           {
@@ -294,7 +294,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 519538999
+              "duration": 483619500
             }
           }
         ],
@@ -303,17 +303,17 @@
       },
       {
         "description": "",
-        "id": "login-in-sauce-demo;locked-out-user-cannot-log-in",
+        "id": "login-in-sauce-demo;invalid-user-does-not-log-in-properly",
         "keyword": "Scenario",
         "line": 13,
-        "name": "Locked out user cannot log in",
+        "name": "Invalid user does not log in properly",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 600215399
+              "duration": 450093899
             }
           },
           {
@@ -326,7 +326,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 692655300
+              "duration": 846358099
             }
           },
           {
@@ -339,7 +339,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 149789199
+              "duration": 131946200
             }
           },
           {
@@ -352,7 +352,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 6146699
+              "duration": 5955200
             }
           },
           {
@@ -360,7 +360,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 546656799
+              "duration": 424114000
             }
           }
         ],
@@ -379,7 +379,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 561007200
+              "duration": 471576500
             }
           },
           {
@@ -392,7 +392,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 660314900
+              "duration": 854494199
             }
           },
           {
@@ -405,7 +405,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 132505500
+              "duration": 155243599
             }
           },
           {
@@ -418,7 +418,7 @@
             },
             "result": {
               "status": "failed",
-              "duration": 2117799,
+              "duration": 1891999,
               "error_message": "AssertionError [ERR_ASSERTION]: Expected to be on products page\n    + expected - actual\n\n    -false\n    +true\n\n    at CustomWorld.<anonymous> (file:///D:/Automation/QA-Automation-Challenge-FrontEnd/src/steps/login.steps.ts:21:12)\n    at Object.run (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\user_code_runner.js:24:27)\n    at D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\step_runner.js:64:114\n    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)\n    at runInTestCaseScope (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\scope\\test_case_scope.js:9:26)\n    at Object.run (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\step_runner.js:64:63)\n    at async TestCaseRunner.invokeStep (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:126:16)\n    at async TestCaseRunner.runStep (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:307:26)\n    at async D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:214:44\n    at async TestCaseRunner.aroundTestStep (D:\\Automation\\QA-Automation-Challenge-FrontEnd\\node_modules\\@cucumber\\cucumber\\lib\\runtime\\test_case_runner.js:154:32)"
             }
           },
@@ -427,7 +427,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 572259300
+              "duration": 547654000
             }
           }
         ],
@@ -446,7 +446,7 @@
             "hidden": true,
             "result": {
               "status": "skipped",
-              "duration": 169900
+              "duration": 200999
             }
           },
           {
@@ -501,7 +501,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 142499
+              "duration": 92099
             }
           }
         ],
