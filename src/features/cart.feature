@@ -1,6 +1,6 @@
 Feature: Shopping Cart in Sauce Demo
 
-  Scenario: User adds product to cart 2
+  Scenario: User adds product to cart 3
     Given the user logs in
     When the user adds the product "Sauce Labs Backpack" to the cart
     Then the product "Sauce Labs Backpack" should be visible in the cart
