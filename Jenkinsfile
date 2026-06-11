@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'Node20'
+        nodejs 'Node22'
     }
 
     stages {
@@ -50,7 +50,7 @@ pipeline {
             echo '❌ Pipeline failed — see report'
         }
         success {
-            echo '✅ Pass alll test'
+            echo '✅ All tests passed'
         }
     }
 }
